@@ -1,12 +1,18 @@
 package com.example.demo.student;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
+@Entity
+@Table
 public class Student {
+    @Id
     private Long Id;
     private String name;
     private LocalDate birth;
     private String email;
+
     private Integer age;
 
     public Student() {
