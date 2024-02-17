@@ -3,16 +3,19 @@ package com.example.demo.student;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 @Entity
 @Table
 public class Student {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     private String name;
     private LocalDate birth;
     private String email;
 
+    @Transient
     private Integer age;
 
     public Student() {
@@ -49,8 +52,11 @@ public class Student {
         return email;
     }
 
-    public Integer getAge() {
-        return age;
+    public Integer getAge(
+
+    ) {
+        return Period.between(this.birth, LocalDate.now()).getYears();
+
     }
 
     public void setId(Long id) {
